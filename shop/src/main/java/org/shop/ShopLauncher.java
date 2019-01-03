@@ -9,6 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+
+import javax.swing.*;
 
 /**
  * The ShopLauncher class.
@@ -25,10 +30,15 @@ public class ShopLauncher {
         //TODO: implement using Spring Framework ApplicationContext
 
         //ApplicationContext context = new AnnotationConfigApplicationContext(RepositoryConfig.class, ServiceConfig.class, DataInitializerConfig.class, UserRepositoryFactory.class);
-        SpringApplication.run(ShopLauncher.class, args);
+        ApplicationContext context = SpringApplication.run(ShopLauncher.class, args);
+        //AnnotationConfigApplicationContext(RepositoryConfig.class, ServiceConfig.class, DataInitializerConfig.class, UserRepositoryFactory.class);
+
+//        for (String name : context.getBeanDefinitionNames()) {
+//            System.out.println(name);
+//        }
 
 
-
+        //SpringApplication.run(ShopLauncher.class, args);
 
     }
 }
