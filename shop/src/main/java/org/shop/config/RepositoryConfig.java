@@ -26,29 +26,29 @@ public class RepositoryConfig {
 //        return new PropertySourcesPlaceholderConfigurer();
 //    }
 
-    @Bean(name = "ItemRepository")
+    @Bean
     public ItemRepository itemRepository() {
         return new ItemMapRepository();
     }
 
-    @Bean(name = "OrderRepository")
+    @Bean
     public OrderRepository orderRepository() {
         OrderMapRepository orderRepository = new OrderMapRepository();
         orderRepository.setSequence(env.getProperty("initialSequence", long.class));
         return orderRepository;
     }
 
-    @Bean(name = "ProductRepository")
+    @Bean
     public ProductRepository productRepository() {
         return new ProductMapRepository();
     }
 
-    @Bean(name = "ProposalRepository")
+    @Bean
     public ProposalRepository proposalRepository() {
         return new ProposalMapRepository();
     }
 
-    @Bean(name = "SellerRepository")
+    @Bean
     public SellerRepository sellerRepository() {
         return new SellerMapRepository();
     }
