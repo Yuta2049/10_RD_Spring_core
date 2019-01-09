@@ -1,23 +1,29 @@
 package org.shop.config;
 
+import com.sun.javafx.util.Logging;
 import org.shop.*;
 import org.shop.api.ProductService;
 import org.shop.api.UserService;
+import org.shop.aspects.LoggingAspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ComponentScan({"org.shop, org.shop.config"})
-//@Import("ServiceConfig.")
+//@ComponentScan({"org.shop, org.shop.config"})
+//@EnableAspectJAutoProxy
 public class DataInitializerConfig {
 
+//    @Autowired
+//    private LoggingAspect loggingAspect;
 //    @Bean
-//    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-//        return new PropertySourcesPlaceholderConfigurer();
+//    public LoggingAspect loggingAspect() {
+//        return new LoggingAspect();
 //    }
 
     @Bean
@@ -49,11 +55,10 @@ public class DataInitializerConfig {
         return new UserInitializer(userService);
     }
 
-    @Bean (initMethod = "initData")
+    @Bean(initMethod = "initData")
     public DataInitializer dataInitializer() {
         return new DataInitializer();
     }
-
 }
 
 

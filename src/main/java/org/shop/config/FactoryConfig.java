@@ -4,6 +4,7 @@ import org.shop.repository.UserRepository;
 import org.shop.repository.factory.UserRepositoryFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 public class FactoryConfig {
@@ -14,7 +15,7 @@ public class FactoryConfig {
     }
 
     @Bean
-    public UserRepository UserRepository() {
+    public UserRepository userRepository() {
         return userRepositoryFactory().createUserRepository();
     }
 

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceConfig {
-
     @Bean
     public ItemService itemService(ItemRepository itemRepository) {
         return new ItemServiceImpl(itemRepository);
@@ -38,5 +37,4 @@ public class ServiceConfig {
     public UserService userService() {
         return new UserServiceImpl();
     }
-
 }
