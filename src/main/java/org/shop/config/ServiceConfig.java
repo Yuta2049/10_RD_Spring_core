@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceConfig {
+
     @Bean
     public ItemService itemService(ItemRepository itemRepository) {
         return new ItemServiceImpl(itemRepository);

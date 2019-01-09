@@ -1,6 +1,8 @@
 package org.shop.data;
 
 
+import org.shop.annotation.InjectRandomInt;
+
 /**
  * Entity of <code>User</code> class represents the user object.
  * 
@@ -76,5 +78,5 @@ public class User implements Entity {
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + "]";
-    }
+     }
 }

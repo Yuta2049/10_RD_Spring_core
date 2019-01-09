@@ -1,5 +1,7 @@
 package org.shop;
 
+import org.shop.annotation.InjectRandomIntBeanPostProcessor;
+import org.shop.annotation.InjectRandomIntTestClass;
 import org.shop.api.ProductService;
 import org.shop.api.ProposalService;
 import org.shop.api.SellerService;
@@ -30,7 +32,7 @@ public class ShopLauncher {
     public static void main(String[] args) {
 
         //ApplicationContext context = new AnnotationConfigApplicationContext(DataInitializerConfig.class, FactoryConfig.class, RepositoryConfig.class, ServiceConfig.class);
-        ApplicationContext context = new AnnotationConfigApplicationContext(DataInitializerConfig.class, FactoryConfig.class, RepositoryConfig.class, ServiceConfig.class, LoggingAspect.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(DataInitializerConfig.class, FactoryConfig.class, RepositoryConfig.class, ServiceConfig.class, LoggingAspect.class, InjectRandomIntBeanPostProcessor.class, InjectRandomIntTestClass.class);
 
         System.out.println("Users:");
         UserService userService = context.getBean(UserService.class);
@@ -52,5 +54,8 @@ public class ShopLauncher {
         DataInitializer dataInitializer = context.getBean(DataInitializer.class);
         dataInitializer.initData();
 
+
+        InjectRandomIntTestClass injectRandomIntTestClass = context.getBean(InjectRandomIntTestClass.class);
+        System.out.println(injectRandomIntTestClass.toString());
     }
 }

@@ -2,11 +2,11 @@
 
 <configuration>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
-        </encoder>
-    </appender>
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>
@@ -17,9 +17,9 @@
         </encoder>
     </appender>
 
-    <logger name = "org.shop" level="ALL" additivity="false">
-        <appender-ref ref="STDOUT" />
-    </logger>
+    <!--<logger name = "org.shop" level="FATAL" additivity="false">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</logger>-->
 
     <logger name="org.shop" level="ALL" additivity="false">
         <appender-ref ref="FILE" />

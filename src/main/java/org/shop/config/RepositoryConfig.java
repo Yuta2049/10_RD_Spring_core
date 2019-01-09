@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySource(value= { "classpath:application.properties" })
+@PropertySource(value = {"classpath:application.properties"})
 public class RepositoryConfig {
 
     @Autowired
