@@ -3,22 +3,14 @@ package org.shop.config;
 import org.shop.api.*;
 import org.shop.api.impl.*;
 import org.shop.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 @Configuration
 public class ServiceConfig {
 
-    private @Autowired
-    ItemRepository itemRepository;
-    private @Autowired ProductRepository productRepository;
-    private @Autowired ProposalRepository proposalRepository;
-
     @Bean
-    public ItemService itemService() {
+    public ItemService itemService(ItemRepository itemRepository) {
         return new ItemServiceImpl(itemRepository);
     }
 
@@ -28,12 +20,12 @@ public class ServiceConfig {
     }
 
     @Bean
-    public ProductService productService() {
+    public ProductService productService(ProductRepository productRepository) {
         return new ProductServiceImpl(productRepository);
     }
 
     @Bean
-    public ProposalService proposalService() {
+    public ProposalService proposalService(ProposalRepository proposalRepository) {
         return new ProposalServiceImpl(proposalRepository);
     }
 

@@ -15,15 +15,10 @@ import java.util.Map;
 //@Import("ServiceConfig.")
 public class DataInitializerConfig {
 
-//    @Autowired
-//    private ProductService productService;
-
-    private UserService userService;
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
+//    @Bean
+//    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+//        return new PropertySourcesPlaceholderConfigurer();
+//    }
 
     @Bean
     public ProductInitializer productInitializer(ProductService productService) {
@@ -50,11 +45,11 @@ public class DataInitializerConfig {
     }
 
     @Bean
-    public UserInitializer userInitializer() {
+    public UserInitializer userInitializer(UserService userService) {
         return new UserInitializer(userService);
     }
 
-    @Bean//(initMethod = "initData")
+    @Bean (initMethod = "initData")
     public DataInitializer dataInitializer() {
         return new DataInitializer();
     }

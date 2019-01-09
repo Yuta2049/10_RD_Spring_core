@@ -2,6 +2,9 @@ package org.shop;
 
 
 import org.shop.api.ProductService;
+import org.shop.api.ProposalService;
+import org.shop.api.SellerService;
+import org.shop.api.UserService;
 import org.shop.config.DataInitializerConfig;
 import org.shop.config.RepositoryConfig;
 import org.shop.config.ServiceConfig;
@@ -34,31 +37,24 @@ public class ShopLauncher {
      * @param args the arguments
      */
     public static void main(String[] args) {
-        //TODO: implement using Spring Framework ApplicationContext
 
         ApplicationContext context = new AnnotationConfigApplicationContext(RepositoryConfig.class, ServiceConfig.class, DataInitializerConfig.class, UserRepositoryFactory.class);
-        //ApplicationContext context = SpringApplication.run(ShopLauncher.class, args);
 
-//        for (String name : context.getBeanDefinitionNames()) {
-//            System.out.println(name);
-//        }
+        System.out.println("Users:");
+        UserService userService = context.getBean(UserService.class);
+        userService.getUsers().forEach(System.out::println);
 
-
-        // ProductInitializer
         ProductService productService = context.getBean(ProductService.class);
+        System.out.println("Products:");
         productService.getProducts().forEach(System.out::println);
 
+        SellerService sellerService = context.getBean(SellerService.class);
+        System.out.println("Sellers:");
+        sellerService.getSellers().forEach(System.out::println);
 
-
-
-        SellerInitializer sellerInitializer = context.getBean(SellerInitializer.class);
-        System.out.println(sellerInitializer.toString());
-
-        DataInitializer dataInitializer = context.getBean(DataInitializer.class);
-
-        System.out.println(dataInitializer.toString());
-
-        dataInitializer.initData();
+        System.out.println("Proposals:");
+        ProposalService proposalService = context.getBean(ProposalService.class);
+        sellerService.getSellers().forEach(x->proposalService.getProposalsBySeller(x).forEach(System.out::println));
 
 
     }
