@@ -1,6 +1,7 @@
 package org.shop;
 
 
+import org.shop.api.ProductService;
 import org.shop.config.DataInitializerConfig;
 import org.shop.config.RepositoryConfig;
 import org.shop.config.ServiceConfig;
@@ -43,7 +44,11 @@ public class ShopLauncher {
 //        }
 
 
-        //SpringApplication.run(ShopLauncher.class, args);
+        // ProductInitializer
+        ProductService productService = context.getBean(ProductService.class);
+        productService.getProducts().forEach(System.out::println);
+
+
 
 
         SellerInitializer sellerInitializer = context.getBean(SellerInitializer.class);

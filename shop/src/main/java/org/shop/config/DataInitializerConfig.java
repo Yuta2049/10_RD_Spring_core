@@ -3,26 +3,21 @@ package org.shop.config;
 import org.shop.*;
 import org.shop.api.ProductService;
 import org.shop.api.UserService;
-import org.shop.data.Seller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
 
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 @Configuration
-@ComponentScan("org.shop")
+@ComponentScan({"org.shop, org.shop.config"})
+//@Import("ServiceConfig.")
 public class DataInitializerConfig {
 
-    private ProductService productService;
+//    @Autowired
+//    private ProductService productService;
+
     private UserService userService;
 
     @Bean
@@ -31,11 +26,12 @@ public class DataInitializerConfig {
     }
 
     @Bean
-    public ProductInitializer productInitializer() {
+    public ProductInitializer productInitializer(ProductService productService) {
         return new ProductInitializer(productService);
     }
 
     @Bean
+    @Qualifier("proposalInitializer")
     public ProposalInitializer proposalInitializer() {
         return new ProposalInitializer();
     }
