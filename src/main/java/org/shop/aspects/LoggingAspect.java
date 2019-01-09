@@ -1,69 +1,73 @@
 package org.shop.aspects;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
+//import org.aspectj.lang.JoinPoint;
+//import org.aspectj.lang.ProceedingJoinPoint;
+//import org.aspectj.lang.annotation.*;
+//import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.JoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Aspect
 @Configuration
 //@EnableAspectJAutoProxy(proxyTargetClass = true)
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 public class LoggingAspect {
 
     //private final static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-//    @Bean // the Aspect itself must also be a Bean
-//    public LoggingAspect myAspect() {
-//        return new LoggingAspect();
-//    }
+    @Pointcut("execution(* *(..)) && !within(is(EnumType)) && !within(is(FinalType))")
+    public void loggedClass() { }
+
 
     //@Before("execution(* org.shop.*.*(..))")
-    //@Before("execution(* org.shop.*.*(..))")
-    @Before("execution(* *(..))")
+    //@Before("execution(* *(..))")
+    @Before("loggedClass()")
     public void before(JoinPoint joinPoint){
         //Advice
-        logger.info(" Check for user access ");
+        //logger.info(" Check for user access ");
         logger.info(" Allowed execution for {}", joinPoint);
                 System.out.println("AOP logging -> "
-                + joinPoint.toShortString() );
+                + joinPoint.toLongString());
+        String methodName = joinPoint.getSignature().getName();
+        Object[] methodArgs = joinPoint.getArgs();
+        logger.debug("Call method " + methodName + " with args " + methodArgs);
 
     }
 
-    //@After("execution(* org.shop.*.*(..))")
-    public void after(JoinPoint joinPoint){
-        //Advice
-        logger.info(" Check for user access ");
-        logger.info(" Allowed execution for {}", joinPoint);
-        System.out.println("AOP logging -> "
-                + joinPoint.toShortString() );
-    }
+//    @After("execution(* org.shop.*.*(..))")
+//    public void after(JoinPoint joinPoint){
+//        //Advice
+//        logger.info(" Check for user access ");
+//        logger.info(" Allowed execution for {}", joinPoint);
+//        System.out.println("AOP logging -> "
+//                + joinPoint.toShortString() );
+//    }
+//
+//    @Around("execution(* org.shop.*.*(..))")
+//    public void around(JoinPoint joinPoint){
+//        //Advice
+//        logger.info(" Check for user access ");
+//        logger.info(" Allowed execution for {}", joinPoint);
+//        System.out.println("AOP logging -> "
+//                + joinPoint.toShortString() );
+//    }
 
-    @Around("execution(* org.shop.*.*(..))")
-    public void around(JoinPoint joinPoint){
-        //Advice
-        logger.info(" Check for user access ");
-        logger.info(" Allowed execution for {}", joinPoint);
-        System.out.println("AOP logging -> "
-                + joinPoint.toShortString() );
-    }
+    //@Pointcut("@annotation(final)")
+    //@Pointcut("@initialization(final)")
+//    @Pointcut("@this(final *)")
+//    public void finalClass() { }
+
 
 //    @Pointcut("execution(* org.shop.*.*(..))")
 //    public void webServiceMethod() {}
 //
 //    //@Pointcut("@annotation(exampl")
-//
-//    @Around("webServiceMethod()")
-//    public Object logWebServiceCall(ProceedingJoinPoint thisJointPoint) throws Throwable {
-//
-//        System.out.println("AOP logging -> "
-//                + thisJointPoint.toShortString() );
 //
 //
 //        String methodName = thisJointPoint.getSignature().getName();
@@ -78,13 +82,7 @@ public class LoggingAspect {
 //        return result;
 //
 //    }
-//
-//    //@Before("execution(* org.shop.Operation.*(..))")
-//    @Before("execution(* org.shop.*.*(..))")
-//    public void logMethodExecution(JoinPoint jp) {
-//        System.out.println("AOP logging -> "
-//                + jp.toShortString() );
-//    }
+
 //
 //
 //    @After("execution(* org.shop.*(..))")
