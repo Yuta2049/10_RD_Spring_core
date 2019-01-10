@@ -1,19 +1,10 @@
 package org.shop.config;
 
-import com.sun.javafx.util.Logging;
 import org.shop.*;
-import org.shop.annotation.InjectRandomIntTestClass;
 import org.shop.api.ProductService;
 import org.shop.api.UserService;
-import org.shop.aspects.LoggingAspect;
 import org.shop.common.Sellers;
-import org.shop.data.Product;
-import org.shop.data.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 
 import java.util.HashMap;

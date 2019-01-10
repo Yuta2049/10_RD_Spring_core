@@ -1,5 +1,6 @@
 package org.shop.aspects;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.JoinPoint;
 import org.slf4j.Logger;
@@ -18,8 +19,15 @@ public class LoggingAspect {
     public void loggedClass() { }
 
     @Before("loggedClass()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) throws Throwable{
         logger.info(" Allowed execution for {}", joinPoint);
     }
+
+//    @Around("loggedClass()")
+//    public Object before(ProceedingJoinPoint joinPoint) throws Throwable{
+//        logger.info(" Allowed execution for {}", joinPoint);
+//        return joinPoint.proceed();
+//    }
+
 }
 
