@@ -6,6 +6,7 @@ import org.shop.annotation.InjectRandomIntTestClass;
 import org.shop.api.ProductService;
 import org.shop.api.UserService;
 import org.shop.aspects.LoggingAspect;
+import org.shop.common.Sellers;
 import org.shop.data.Product;
 import org.shop.data.User;
 import org.slf4j.Logger;
@@ -35,8 +36,8 @@ public class DataInitializerConfig {
     @Bean
     public Map<Long, String> sellerNames() {
         Map<Long, String> sellerNames = new HashMap<>();
-        sellerNames.put(1L, "Amazon");
-        sellerNames.put(2L, "Samsung");
+        sellerNames.put(1L, Sellers.AMAZON);
+        sellerNames.put(2L, Sellers.SAMSUNG);
         return sellerNames;
     }
 

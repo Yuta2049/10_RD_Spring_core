@@ -7,10 +7,7 @@ import org.shop.api.ProposalService;
 import org.shop.api.SellerService;
 import org.shop.api.UserService;
 import org.shop.aspects.LoggingAspect;
-import org.shop.config.DataInitializerConfig;
-import org.shop.config.FactoryConfig;
-import org.shop.config.RepositoryConfig;
-import org.shop.config.ServiceConfig;
+import org.shop.config.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +18,7 @@ import javax.xml.crypto.Data;
 /**
  * The ShopLauncher class.
  */
-@ComponentScan({"org.shop"})
+//@ComponentScan({"org.shop"})
 public class ShopLauncher {
     
     /**
@@ -31,8 +28,7 @@ public class ShopLauncher {
      */
     public static void main(String[] args) {
 
-        //ApplicationContext context = new AnnotationConfigApplicationContext(DataInitializerConfig.class, FactoryConfig.class, RepositoryConfig.class, ServiceConfig.class);
-        ApplicationContext context = new AnnotationConfigApplicationContext(DataInitializerConfig.class, FactoryConfig.class, RepositoryConfig.class, ServiceConfig.class, LoggingAspect.class, InjectRandomIntBeanPostProcessor.class, InjectRandomIntTestClass.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(AllConfig.class);
 
         System.out.println("Users:");
         UserService userService = context.getBean(UserService.class);
@@ -49,11 +45,6 @@ public class ShopLauncher {
         System.out.println("Proposals:");
         ProposalService proposalService = context.getBean(ProposalService.class);
         sellerService.getSellers().forEach(x->proposalService.getProposalsBySeller(x).forEach(System.out::println));
-
-
-        DataInitializer dataInitializer = context.getBean(DataInitializer.class);
-        dataInitializer.initData();
-
 
         InjectRandomIntTestClass injectRandomIntTestClass = context.getBean(InjectRandomIntTestClass.class);
         System.out.println(injectRandomIntTestClass.toString());
